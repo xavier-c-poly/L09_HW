@@ -1,3 +1,34 @@
+"""
+
+MAKE SURE TO COMMIT ALL THE TIME
+MAKE SURE TO COMMIT ALL THE TIME
+MAKE SURE TO COMMIT ALL THE TIME
+MAKE SURE TO COMMIT ALL THE TIME
+MAKE SURE TO COMMIT ALL THE TIME
+MAKE SURE TO COMMIT ALL THE TIME
+MAKE SURE TO COMMIT ALL THE TIME
+MAKE SURE TO COMMIT ALL THE TIME
+MAKE SURE TO COMMIT ALL THE TIME
+MAKE SURE TO COMMIT ALL THE TIME
+MAKE SURE TO COMMIT ALL THE TIME
+MAKE SURE TO COMMIT ALL THE TIME
+MAKE SURE TO COMMIT ALL THE TIME
+MAKE SURE TO COMMIT ALL THE TIME
+MAKE SURE TO COMMIT ALL THE TIME
+MAKE SURE TO COMMIT ALL THE TIME
+MAKE SURE TO COMMIT ALL THE TIME
+MAKE SURE TO COMMIT ALL THE TIME
+MAKE SURE TO COMMIT ALL THE TIME
+MAKE SURE TO COMMIT ALL THE TIME
+MAKE SURE TO COMMIT ALL THE TIME
+MAKE SURE TO COMMIT ALL THE TIME
+MAKE SURE TO COMMIT ALL THE TIME
+MAKE SURE TO COMMIT ALL THE TIME
+
+"""
+
+
+
 from math import sin, cos, radians
 
 import altair as alt
@@ -60,6 +91,33 @@ class Cannonball:
             self.move(step, user_grav)
 
         return xs, ys
+
+
+
+class Crazyball(Cannonball):
+    def __init__(self, x):
+        super().__init__(x)
+        print_iface = Print_Iface()
+    def move(self, sec, grav):
+        self.rand_g = random.randrange(0, 10)
+        if self.getX() < 400:
+            # "add random values"?
+            pass
+
+        dx = self._vx * sec
+        dy = self._vy * sec
+
+        self._vy = self._vy - grav * sec
+
+        self._x = self._x + dx
+        self._y = self._y + dy
+
+
+
+class Print_Iface:
+    pass
+
+
 
 def run_app():
     st.title("Cannonball Trajectory")
