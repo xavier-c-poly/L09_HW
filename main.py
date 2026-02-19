@@ -96,32 +96,7 @@ class Cannonball:
     # @param app the streamlit app
     #
     def printChart(self, app):
-        df = pd.DataFrame({"x": self.getXs(), "y": self.getYs()})
-        
-        #### debug start
-        # df = pd.DataFrame({"x": [10, 20, 30, 40, 50, 60, 70, 80], "y": [0, 40, 60, 80, 60, 40, 20, 0]})
-        # print("START Lets find out stuff..")
-        # print(self.getXs())
-        # print("\ngetXs() above\n")
-        # print(self.getYs())
-        # print("getYs() above\n")
-        # print(self.getXs()[1])
-        # print("getXs()[1] above\n")
-        # print(self.getYs()[1])
-        # print("getYs()[1] above\n")
-        # print("Lets find out stuff.. END\n")
-        #### debug end
-
-        chart = (
-            alt.Chart(df)
-            .mark_line()
-            .encode(
-                x=alt.X("x:Q", scale=alt.Scale(domain=[0, 200]), title="Distance (m)"),
-                y=alt.Y("y:Q", scale=alt.Scale(domain=[0, 100]), title="Height (m)")
-            )
-            .properties(width=700, height=400)
-        )
-        app.altair_chart(chart, use_container_width=True)
+        self._print_iface.printChartInterface(app)
 
 
 
@@ -135,14 +110,18 @@ class Crazyball(Cannonball):
     #
     def move(self, sec, grav):
         # Generate the random gravity and determine if its applied
-        self.rand_g = random.randrange(0, 15)
-        if self.getX() < 400:
-            grav = self.rand_g
+        self.rand_g = random.randrange(-10, 10)
+        new_grav = grav
+        if self.getX() < 150:
+            if grav + self.rand_g < 15 and grav + self.rand_g > 0:
+                new_grav += self.rand_g
+            else:
+                new_grav = grav
 
         dx = self._vx * sec
         dy = self._vy * sec
 
-        self._vy = self._vy - grav * sec
+        self._vy = self._vy - new_grav * sec
 
         self._x = self._x + dx
         self._y = self._y + dy
@@ -161,6 +140,18 @@ class Print_Iface:
         return self._xs
     def getYsInterface(self):
         return self._ys
+    def printChartInterface(self, app):
+        df = pd.DataFrame({"x": self._xs, "y": self._ys})
+        chart = (
+            alt.Chart(df)
+            .mark_line()
+            .encode(
+                x=alt.X("x:Q", scale=alt.Scale(domain=[0, 400]), title="Distance (m)"),
+                y=alt.Y("y:Q", scale=alt.Scale(domain=[0, 200]), title="Height (m)")
+            )
+            .properties(width=700, height=400)
+        )
+        app.altair_chart(chart, use_container_width=True)
 
 
 
