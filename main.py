@@ -1,34 +1,3 @@
-"""
-
-MAKE SURE TO COMMIT ALL THE TIME
-MAKE SURE TO COMMIT ALL THE TIME
-MAKE SURE TO COMMIT ALL THE TIME
-MAKE SURE TO COMMIT ALL THE TIME
-MAKE SURE TO COMMIT ALL THE TIME
-MAKE SURE TO COMMIT ALL THE TIME
-MAKE SURE TO COMMIT ALL THE TIME
-MAKE SURE TO COMMIT ALL THE TIME
-MAKE SURE TO COMMIT ALL THE TIME
-MAKE SURE TO COMMIT ALL THE TIME
-MAKE SURE TO COMMIT ALL THE TIME
-MAKE SURE TO COMMIT ALL THE TIME
-MAKE SURE TO COMMIT ALL THE TIME
-MAKE SURE TO COMMIT ALL THE TIME
-MAKE SURE TO COMMIT ALL THE TIME
-MAKE SURE TO COMMIT ALL THE TIME
-MAKE SURE TO COMMIT ALL THE TIME
-MAKE SURE TO COMMIT ALL THE TIME
-MAKE SURE TO COMMIT ALL THE TIME
-MAKE SURE TO COMMIT ALL THE TIME
-MAKE SURE TO COMMIT ALL THE TIME
-MAKE SURE TO COMMIT ALL THE TIME
-MAKE SURE TO COMMIT ALL THE TIME
-MAKE SURE TO COMMIT ALL THE TIME
-
-"""
-
-
-
 from math import sin, cos, radians
 
 import altair as alt
@@ -92,7 +61,7 @@ class Cannonball:
     def getYs(self):
         return self._print_iface.getYsInterface()
     
-    # Print the chart for the trajectory
+    # Print the chart for the trajectory by using the print_iface's method to do so
     # @param app the streamlit app
     #
     def printChart(self, app):
@@ -140,6 +109,9 @@ class Print_Iface:
         return self._xs
     def getYsInterface(self):
         return self._ys
+    # Print the chart for the trajectory
+    # @param app the streamlit app
+    #
     def printChartInterface(self, app):
         df = pd.DataFrame({"x": self._xs, "y": self._ys})
         chart = (
